@@ -1,23 +1,29 @@
-import logo from './logo.svg';
 import './App.css';
+import Home from './Pages/home';
+import Blog from './Pages/blog';
+import {BrowserRouter,Routes,Route,Link} from 'react-router-dom';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      
+      <BrowserRouter>
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+     <h1 class="navbar-brand" style={{textDecoration:"none", color:"#78493e",fontFamily:"cursive"}}><b>GR Calc</b></h1>
+  
+  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+    <div class="navbar-nav">
+    <h6 class="me-3"><Link to={'/'} style={{textDecoration:"none", color:"grey",fontFamily:"cursive"}}>Home</Link></h6>
+    
+    <h6><Link to={'/about'} style={{textDecoration:"none", color:"grey",fontFamily:"cursive"}}>About</Link></h6>
+       </div>
+  </div>
+      </nav>
+      <Routes>
+        <Route  path='/' element={<Home />}/>
+        <Route  path='/about' element={<Blog />}/>
+      </Routes>
+      </BrowserRouter>
     </div>
   );
 }
