@@ -1,5 +1,6 @@
 import './App.css';
-import Home from './Pages/home';
+// import Home from './Pages/home';
+import Calculator from "./Pages/calc";
 import Blog from './Pages/blog';
 import {BrowserRouter,Routes,Route,Link} from 'react-router-dom';
 
@@ -20,7 +21,7 @@ function App() {
   </div>
       </nav>
       <Routes>
-        <Route  path='/' element={<Home />}/>
+        <Route  path='/' element={<Calculator />}/>
         <Route  path='/about' element={<Blog />}/>
       </Routes>
       </BrowserRouter>
