@@ -1,10 +1,8 @@
 import React, { Fragment, useEffect, useState } from "react";
-//import "./Calculator.css"; // Optional, for styling
 
 
-  
 
-const Calculator = () => {
+  const Calculator = () => {
   const [input, setInput] = useState("");
   const [result, setResult] = useState(0);
 
@@ -24,6 +22,7 @@ const Calculator = () => {
   const handleCalculation = () => {
     const tokens = parseInput(input);
     const res = calculateExpression(tokens);
+    setInput("");
     setResult(res);
   };
 
@@ -86,11 +85,9 @@ const Calculator = () => {
   return (
   <Fragment>
 <div class="container-fluid text-center" >
-<h5 style={{fontFamily:"cursive",color:"gold",}}><b>GOLD RATE CALCULATOR</b></h5>
+<h5 style={{fontFamily:"cursive",color:"grey"}}><b>GOLD RATE CALCULATOR</b></h5>
 <form>
-  <input type='text'placeholder="Ats" value={input} style={{padding:"10px",boxShadow:"1px 1px 1px grey ", border:"2px solid grey",borderRadius:"4px"}} />
- <br/> <input type='text'  value={result} style={{padding:"10px",boxShadow:"1px 1px 1px grey ", border:"2px solid grey",borderRadius:"4px"}} />
-
+  <input type='text'placeholder="Enter the value" value={input} style={{padding:"10px",boxShadow:"1px 1px 1px grey ", border:"2px solid grey",borderRadius:"4px"}} />
 </form>
 
 <div class="container-fluid text-center">
@@ -124,26 +121,28 @@ const Calculator = () => {
 <div class="container text-center">
 <div class="row align-items-start">
 <div class="col">
-<button class="btn btn-dark btn-lg m-1 border-danger-subtle"  style={{width:"20%"}} onClick={handleCalculation}>=</button>
+<button  class="btn btn-dark btn-lg m-1" border-danger-subtle data-bs-toggle="modal" data-bs-target="#grdata"  style={{width:"10em",fontFamily:"cursive",color:"gold"}} onClick={handleCalculation}>Convert2goldrate</button>
 </div></div></div></div>
-<div class="container text-center">
-          <div class="row align-items-start">
-           <div class="col12"> <div class="mb-3" >
-            <span class="border border-danger-subtle rounded-2 fw-normal bg-dark-subtle text-dark h5"
-            style={{fontFamily:"cursive",color:"gold",}}>
-              Rate of 18Carat :{rate.map(data =>data.price18*result)} </span>
-            </div></div>
-            <div class="col12"> <div class="mb-3" >
-            <span class="border border-danger-subtle rounded-2 fw-normal bg-dark-subtle text-dark h5"
-            style={{fontFamily:"cursive",color:"gold",}}>
-              Rate of 22Carat :{rate.map(data =>data.price22*result)} </span>
-            </div></div>
-            <div class="col12"> <div class="mb-3" >
-            <span class="border border-danger-subtle rounded-2 fw-normal bg-dark-subtle text-dark h5"
-            style={{fontFamily:"cursive",color:"gold",}}>
-              Rate of 24Carat :{rate.map(data =>data.price24*result)} </span>
-            </div></div></div></div>
-           
+            
+
+<div class="modal fade" id="grdata" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title text-secondary">Gold Rate</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body"style={{fontFamily:"cursive",color:"brown",}}>
+        <p>{result} gram of 24carat gold:₹{rate.map(data =>data.price24*result)}</p>
+        <p>{result} gram of 22carat gold:₹{rate.map(data =>data.price22*result)}</p>
+        <p>{result} gram of 18carat gold:₹{rate.map(data =>data.price18*result)}</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
            
 </Fragment>)
 };
