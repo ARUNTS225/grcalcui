@@ -5,7 +5,7 @@ import {BrowserRouter,Routes,Route,Link} from 'react-router-dom';
 
 function App() {
   return (
-    <div className="App">
+    <div class="container">
       
       <BrowserRouter>
       <nav class="navbar navbar-expand-lg navbar-light bg-light">

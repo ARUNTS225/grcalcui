@@ -1,5 +1,5 @@
 import React, { Fragment, useEffect, useState } from "react";
-
+import axios from "axios"
 
 
   const Calculator = () => {
@@ -77,14 +77,26 @@ import React, { Fragment, useEffect, useState } from "react";
   const [rate, setRate] = useState([]);
 
    useEffect(()=> {
-   fetch('https://goldratecalculator.onrender.com/api/v1/rateapi')
-    .then(res => res.json())
-    .then( res => setRate(res.change))
-    },[])
+    const exRate = async () => {
+   //fetch('https://goldratecalculator.onrender.com/api/v1/rateapi')
+    //.then( res => res.json())
+   // .then( res => setRate(res.change))
+    //},[])
+    try {
+      let url ='https://goldratecalculator.onrender.com/api/v1/rateapi';
+      const response = await axios.get(url);
+             setRate(response.data.change)
+            
+        
+    } catch (error) {
+      console.log(error)
+    }}
+    exRate();
+  },[])
 
   return (
   <Fragment>
-<div class="container-fluid text-center" >
+<div class="container text-center" >
 <h5 style={{fontFamily:"cursive",color:"grey"}}><b>GOLD RATE CALCULATOR</b></h5>
 <form>
   <input type='text'placeholder="Enter the value" value={input} style={{padding:"10px",boxShadow:"1px 1px 1px grey ", border:"2px solid grey",borderRadius:"4px"}} />
